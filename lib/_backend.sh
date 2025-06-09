@@ -61,7 +61,6 @@ FRONTEND_URL=${frontend_url}
 PROXY_PORT=443
 PORT=${backend_port}
 
-# Database Config
 DB_DIALECT=postgres
 DB_HOST=localhost
 DB_PORT=5432
@@ -69,26 +68,51 @@ DB_USER=${instancia_add}
 DB_PASS=${mysql_root_password}
 DB_NAME=${instancia_add}
 
-# MySQL Config
+TIMEOUT_TO_IMPORT_MESSAGE=1000
+
 JWT_SECRET=${jwt_secret}
 JWT_REFRESH_SECRET=${jwt_refresh_secret}
 
-# Redis Config
+MASTER_KEY=senha_master
+
+# CREDENCIAIS DO REDIS
 REDIS_URI=redis://:${mysql_root_password}@127.0.0.1:${redis_port}
 REDIS_OPT_LIMITER_MAX=1
 REGIS_OPT_LIMITER_DURATION=3000
 
-# WhatsApp Config
+# CREDENCIAIS BULL DO REDIS NÃO PRECISA USAR
+# REDIS_URI_ACK=redis://:123456@127.0.0.1:6379
+# BULL_BOARD=true
+# BULL_USER=admin
+# BULL_PASS=123456
+
 USER_LIMIT=${max_user}
 CONNECTIONS_LIMIT=${max_whats}
 CLOSED_SEND_BY_ME=true
 
-# Email Config
-MAIL_HOST="smtp.hostinger.com"
-MAIL_USER="contato@seusite.com"
-MAIL_PASS="senha"
-MAIL_FROM="Recuperar Senha <contato@seusite.com>"
-MAIL_PORT="465"
+ENV_TOKEN=wtV
+COMPANY_TOKEN=wtV
+PERFEX_URL=
+PERFEX_MODULE=
+
+VERIFY_TOKEN=Zion CRM
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+# GERENCIANET_SANDBOX=false
+# GERENCIANET_CLIENT_ID=
+# GERENCIANET_CLIENT_SECRET=
+# GERENCIANET_PIX_CERT=certificado
+# GERENCIANET_CHAVEPIX=
+
+# EMAIL
+# MAIL_HOST="smtp"
+# MAIL_USER="user"
+# MAIL_PASS="senha@"
+# MAIL_FROM='user'
+
+
 
 [-]EOF
 EOF
@@ -110,7 +134,7 @@ backend_node_dependencies() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/backend
-  npm install
+  npm install --force
 EOF
 
   sleep 2
@@ -153,7 +177,7 @@ backend_update() {
   pm2 stop ${empresa_atualizar}-backend
   git pull
   cd /home/deploy/${empresa_atualizar}/backend
-  npm install
+  npm install --force
   npm update -f
   npm install @types/fs-extra
   rm -rf dist 

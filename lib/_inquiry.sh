@@ -11,7 +11,7 @@ get_mysql_root_password() {
 get_link_git() {
   
   print_banner
-  printf "${WHITE} 💻 Insira o link do GITHUB do Zapi Waboot que deseja instalar:${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Insira o link do GITHUB do Zion CRMPremium que deseja instalar:${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " link_git
 }
@@ -19,7 +19,7 @@ get_link_git() {
 get_instancia_add() {
   
   print_banner
-  printf "${WHITE} 💻 Informe um nome da sua Empresa que será instalada (Não utilizar espaços ou caracteres especiais, Utilizar Letras minusculas; ):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Informe um nome para a Instancia/Empresa que será instalada (Não utilizar espaços ou caracteres especiais, Utilizar Letras minusculas; ):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " instancia_add
 }
@@ -84,7 +84,7 @@ get_redis_port() {
 get_empresa_delete() {
   
   print_banner
-  printf "${WHITE} 💻 Digite o nome da Empresa que será Deletada (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite o nome da Instancia/Empresa que será Deletada (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " empresa_delete
 }
@@ -92,7 +92,7 @@ get_empresa_delete() {
 get_empresa_atualizar() {
   
   print_banner
-  printf "${WHITE} 💻 Digite o nome da Empresa que deseja Atualizar (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite o nome da Instancia/Empresa que deseja Atualizar (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " empresa_atualizar
 }
@@ -100,7 +100,7 @@ get_empresa_atualizar() {
 get_empresa_bloquear() {
   
   print_banner
-  printf "${WHITE} 💻 Digite o nome da Empresa que deseja Bloquear (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite o nome da Instancia/Empresa que deseja Bloquear (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " empresa_bloquear
 }
@@ -108,7 +108,7 @@ get_empresa_bloquear() {
 get_empresa_desbloquear() {
   
   print_banner
-  printf "${WHITE} 💻 Digite o nome da Empresa que deseja Desbloquear (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite o nome da Instancia/Empresa que deseja Desbloquear (Digite o mesmo nome de quando instalou):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " empresa_desbloquear
 }
@@ -116,7 +116,7 @@ get_empresa_desbloquear() {
 get_empresa_dominio() {
   
   print_banner
-  printf "${WHITE} 💻 Digite o nome da Empresa que deseja Alterar os Dominios (Atenção para alterar os dominios precisa digitar os 2, mesmo que vá alterar apenas 1):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite o nome da Instancia/Empresa que deseja Alterar os Dominios (Atenção para alterar os dominios precisa digitar os 2, mesmo que vá alterar apenas 1):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " empresa_dominio
 }
@@ -140,7 +140,7 @@ get_alter_backend_url() {
 get_alter_frontend_port() {
   
   print_banner
-  printf "${WHITE} 💻 Digite a porta do FRONTEND da Empresa ${empresa_dominio}; A porta deve ser o mesma informada durante a instalação ${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite a porta do FRONTEND da Instancia/Empresa ${empresa_dominio}; A porta deve ser o mesma informada durante a instalação ${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " alter_frontend_port
 }
@@ -149,7 +149,7 @@ get_alter_frontend_port() {
 get_alter_backend_port() {
   
   print_banner
-  printf "${WHITE} 💻 Digite a porta do BACKEND da Empresa ${empresa_dominio}; A porta deve ser o mesma informada durante a instalação ${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite a porta do BACKEND da Instancia/Empresa ${empresa_dominio}; A porta deve ser o mesma informada durante a instalação ${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " alter_backend_port
 }
@@ -201,14 +201,15 @@ software_dominio() {
 inquiry_options() {
   
   print_banner
-  printf "${WHITE} 💻 Bem vindo(a) ao Instalador do ZAPI WABOOT, Selecione abaixo a proxima ação!${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Bem vindo(a) ao Gerenciador de instalações ZION CRM Selecione abaixo a proxima ação!${GRAY_LIGHT}"
   printf "\n\n"
-  printf "   [0] Instalar ZAPI WABOOT\n"
-  printf "   [1] Atualizar ZAPI WABOOT\n"
-  printf "   [2] Deletar ZAPI WABOOT\n"
-  printf "   [3] Bloquear ZAPI WABOOT\n"
-  printf "   [4] Desbloquear ZAPI WABOOT\n"
-  printf "   [5] Alter. dominio ZAPI WABOOT\n"
+  printf "   [0] Instalar Sistema\n"
+  printf "   [1] Atualizar Sistema\n"
+  printf "   [2] Deletar Sistema\n"
+  printf "   [3] Bloquear Sistema\n"
+  printf "   [4] Desbloquear Sistema\n"
+  printf "   [5] Alter. dominio Sistema\n"
+  printf "   [6] Gerador de Licença\n"
   printf "\n"
   read -p "> " option
 
@@ -234,6 +235,10 @@ inquiry_options() {
       ;;
     5) 
       software_dominio 
+      exit
+      ;;
+    6)
+      license_menu
       exit
       ;;        
 
