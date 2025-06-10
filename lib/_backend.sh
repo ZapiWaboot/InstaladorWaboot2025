@@ -183,7 +183,6 @@ backend_update() {
   rm -rf dist 
   npm run build
   npx sequelize db:migrate
-  npx sequelize db:migrate
   npx sequelize db:seed
   pm2 start ${empresa_atualizar}-backend
   pm2 save 
@@ -206,6 +205,8 @@ backend_db_migrate() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/backend
+  npm install --force
+  npm run build
   npx sequelize db:migrate
 EOF
 
